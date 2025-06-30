@@ -13,18 +13,8 @@
         <a-scene>
             <a-assets>
                 <img src="ressources/images/sky.jpeg" id="sky">
-                <img src="ressources/images/gazon.jpg" id="ground">
                 <a-asset-item src="ressources/village/scene.gltf" id="village"></a-asset-item>
             </a-assets>
-
-            <a-plane 
-                rotation="-90 0 0" 
-                position="0 0 0"
-                width="1" 
-                height="1"
-                material="color:#ffffff; src:#ground; repeat: 10 10"
-                >
-            </a-plane>
 
             <a-sky src="#sky"></a-sky>
 
@@ -37,6 +27,24 @@
                 static-body
                 make-gltf-clickable
             ></a-gltf-model>
+
+            <!-- Partie Julie -->
+            <a-entity id="julie" position="-5 0 3" rotation="0 90 0">
+                <a-box color="yellow" position="0 1 0" scale="1 1 1"></a-box>
+                <a-text value="Partie Julie" position="-0.5 1 0.5" color="white"></a-text>
+            </a-entity>
+
+            <!-- Partie Claudia -->
+            <a-entity id="claudia" position="1.3 0 8" rotation="0 180 0">
+                <a-sphere color="red" position="0 1 0" radius="0.5"></a-sphere>
+                <a-text value="Partie Claudia" position="-0.5 1 0.5" color="white"></a-text>
+            </a-entity>
+
+            <!-- Partie Emeline -->
+            <a-entity id="emeline" position="3 0 -10">
+                <a-cylinder color="blue" position="0 1 0" radius="1" height="2"></a-cylinder>
+                <a-text value="Partie Emeline" position="-0.5 1 1.5" color="white"></a-text>
+            </a-entity>
 
             <!-- Téléportation et caméra -->
             <a-entity
