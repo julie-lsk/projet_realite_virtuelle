@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SP réalité virtuelle</title>
+        <script src="./js/index.js"></script>
+        <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-cursor-teleport@1.6.0/dist/aframe-cursor-teleport-component.min.js"></script>
+    </head>
+
+    <body>
+        <a-scene>
+            <a-assets>
+                <img src="ressources/images/sky.jpeg" id="sky">
+                <img src="ressources/images/gazon.jpg" id="ground">
+                <a-asset-item src="ressources/village/scene.gltf" id="village"></a-asset-item>
+            </a-assets>
+
+            <a-plane 
+                rotation="-90 0 0" 
+                position="0 0 0"
+                width="1" 
+                height="1"
+                material="color:#ffffff; src:#ground; repeat: 10 10"
+                >
+            </a-plane>
+
+            <a-sky src="#sky"></a-sky>
+
+            <!-- Village -->
+            <a-gltf-model 
+                position="0 0 0" 
+                scale="20 20 20" 
+                src="#village" 
+                class="clickable"
+                static-body
+                make-gltf-clickable
+            ></a-gltf-model>
+
+            <!-- Téléportation et caméra -->
+            <a-entity
+                id="cameraRig" 
+                cursor-teleport= "
+                    cameraRig: #cameraRig; 
+                    cameraHead: #head; 
+                    collisionEntities: .clickable; 
+                    cursorColor: #ffffff;
+                ">
+
+                <a-entity
+                    id="head"
+                    position="0 0.55 0"
+                    camera
+                    look-controls="reverseMouseDrag: true"
+                >
+                    <a-entity
+                        cursor="rayOrigin: mouse"
+                        geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.01"
+                        material="shader: flat; color: white; shader: flat; opacity: 0.75"
+                        raycaster="objects: .clickable"
+                    ></a-entity>
+                </a-entity>
+                
+            </a-entity>
+    
+        </a-scene>
+    </body>
+
+</html>
