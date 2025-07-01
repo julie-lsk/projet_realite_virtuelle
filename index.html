@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>SP réalité virtuelle</title>
-        <script src="./js/index.js"></script>
         <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-cursor-teleport@1.6.0/dist/aframe-cursor-teleport-component.min.js"></script>
     </head>
@@ -13,7 +12,13 @@
         <a-scene>
             <a-assets>
                 <img src="ressources/images/sky.jpeg" id="sky">
+                <audio id="music" src="ressources/sound/kids-game-gaming-background-music-295075.mp3" preload="auto"></audio>
                 <a-asset-item src="ressources/village/scene.gltf" id="village"></a-asset-item>
+
+                <!-- Sons jeu des 10 cubes -->
+                <audio id="touch-cube" src="ressources/sound/jeu_cubes/touch_cube.wav"></audio>
+                <audio id="win-cubes" src="ressources/sound/jeu_cubes/win_cubes.wav"></audio>
+                <audio id="lose-cubes" src="ressources/sound/jeu_cubes/lose_cubes.wav"></audio>
             </a-assets>
 
             <a-sky src="#sky"></a-sky>
@@ -30,8 +35,33 @@
 
             <!-- Partie Julie -->
             <a-entity id="julie" position="-5 0 3" rotation="0 90 0">
-                <a-box color="yellow" position="0 1 0" scale="1 1 1"></a-box>
-                <a-text value="Partie Julie" position="-0.5 1 0.5" color="white"></a-text>
+
+                <!-- Jeu des 10 cubes -->
+                <a-entity id="cubes-jeu"></a-entity>
+
+                <!-- Panneau d'annonce du jeu -->
+                <a-entity id="panneau-jeu" position="-1.3 1 2.5" rotation="0 40 0">
+                    <!-- Nom du jeu -->
+                    <a-text 
+                        value="Jeu des 10 cubes" 
+                        color="#FFAA00" 
+                        align="center" 
+                        width="2"
+                        position="0 0.2 0"
+                        font="mozillavr"
+                    ></a-text>
+
+                    <!-- Instructions du jeu -->
+                    <a-text 
+                        value="Touchez les cubes numérotés de 1 à 10 dans l'ordre.\nÉvitez les erreurs !" 
+                        color="#FFFFFF" 
+                        align="center" 
+                        width="1.5" 
+                        position="0 0 0"
+                        font="mozillavr"
+                    ></a-text>
+                </a-entity>
+
             </a-entity>
 
             <!-- Partie Claudia -->
@@ -69,10 +99,18 @@
                         raycaster="objects: .clickable"
                     ></a-entity>
                 </a-entity>
-                
             </a-entity>
+
+            <!-- Musique -->
+            <!-- <a-entity sound="src: #music; autoplay: true; loop: true; volume: 0.3; positional: false"></a-entity> -->
+
+            <a-entity id="sound-touch" sound="src: #touch-cube; volume: 2"></a-entity>
+            <a-entity id="sound-win" sound="src: #win-cubes; volume: 2.7"></a-entity>
+            <a-entity id="sound-lose" sound="src: #lose-cubes; volume: 2"></a-entity>
     
         </a-scene>
     </body>
+
+    <script src="./js/index_partie_julie.js"></script>
 
 </html>
