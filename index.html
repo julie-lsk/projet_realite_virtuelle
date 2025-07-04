@@ -1,116 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SP réalité virtuelle</title>
-        <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-cursor-teleport@1.6.0/dist/aframe-cursor-teleport-component.min.js"></script>
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SP réalité virtuelle</title>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-cursor-teleport@1.6.0/dist/aframe-cursor-teleport-component.min.js"></script>
+  </head>
 
-    <body>
-        <a-scene>
-            <a-assets>
-                <img src="ressources/images/sky.jpeg" id="sky">
-                <audio id="music" src="ressources/sound/kids-game-gaming-background-music-295075.mp3" preload="auto"></audio>
-                <a-asset-item src="ressources/village/scene.gltf" id="village"></a-asset-item>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img src="ressources/images/sky.jpeg" id="sky" />
+        <audio
+          id="music"
+          src="ressources/sound/kids-game-gaming-background-music-295075.mp3"
+          preload="auto"
+        ></audio>
+        <a-asset-item
+          src="ressources/village/scene.gltf"
+          id="village"
+        ></a-asset-item>
 
-                <!-- Sons jeu des 10 cubes -->
-                <audio id="touch-cube" src="ressources/sound/jeu_cubes/touch_cube.wav"></audio>
-                <audio id="win-cubes" src="ressources/sound/jeu_cubes/win_cubes.wav"></audio>
-                <audio id="lose-cubes" src="ressources/sound/jeu_cubes/lose_cubes.wav"></audio>
-            </a-assets>
+        <!-- Sons jeu des 10 cubes -->
+        <audio
+          id="touch-cube"
+          src="ressources/sound/jeu_cubes/touch_cube.wav"
+        ></audio>
+        <audio
+          id="win-cubes"
+          src="ressources/sound/jeu_cubes/win_cubes.wav"
+        ></audio>
+        <audio
+          id="lose-cubes"
+          src="ressources/sound/jeu_cubes/lose_cubes.wav"
+        ></audio>
 
-            <a-sky src="#sky"></a-sky>
+        <!-- Sons jeu de mémoire -->
+        <audio
+          id="find-wrong-object"
+          src="ressources/sound/jeu_memoire/find_wrong_object.wav"
+        ></audio>
+        <audio
+          id="find-correct-object"
+          src="ressources/sound/jeu_memoire/find_correct_object.wav"
+        ></audio>
+        <audio
+          id="win-memory-game"
+          src="ressources/sound/jeu_memoire/win_memory_game.wav"
+        ></audio>
+      </a-assets>
 
-            <!-- Village -->
-            <a-gltf-model 
-                position="0 0 0" 
-                scale="20 20 20" 
-                src="#village" 
-                class="clickable"
-                static-body
-                make-gltf-clickable
-            ></a-gltf-model>
+      <a-sky src="#sky"></a-sky>
 
-            <!-- Partie Julie -->
-            <a-entity id="julie" position="-5 0 3" rotation="0 90 0">
+      <!-- Village -->
+      <a-gltf-model
+        position="0 0 0"
+        scale="20 20 20"
+        src="#village"
+        class="clickable"
+        static-body
+        make-gltf-clickable
+      ></a-gltf-model>
 
-                <!-- Jeu des 10 cubes -->
-                <a-entity id="cubes-jeu"></a-entity>
+      <!-- Partie Julie -->
+      <a-entity id="julie" position="-5 0 3" rotation="0 90 0">
+        <!-- Jeu des 10 cubes -->
+        <a-entity id="cubes-jeu"></a-entity>
 
-                <!-- Panneau d'annonce du jeu -->
-                <a-entity id="panneau-jeu" position="-1.3 1 2.5" rotation="0 40 0">
-                    <!-- Nom du jeu -->
-                    <a-text 
-                        value="Jeu des 10 cubes" 
-                        color="#FFAA00" 
-                        align="center" 
-                        width="2"
-                        position="0 0.2 0"
-                        font="mozillavr"
-                    ></a-text>
+        <!-- Panneau d'annonce du jeu -->
+        <a-entity id="panneau-jeu" position="-1.3 1 2.5" rotation="0 40 0">
+          <!-- Nom du jeu -->
+          <a-text
+            value="Jeu des 10 cubes"
+            color="#FFAA00"
+            align="center"
+            width="2"
+            position="0 0.2 0"
+            font="mozillavr"
+          ></a-text>
 
-                    <!-- Instructions du jeu -->
-                    <a-text 
-                        value="Touchez les cubes numérotés de 1 à 10 dans l'ordre.\nÉvitez les erreurs !" 
-                        color="#FFFFFF" 
-                        align="center" 
-                        width="1.5" 
-                        position="0 0 0"
-                        font="mozillavr"
-                    ></a-text>
-                </a-entity>
+          <!-- Instructions du jeu -->
+          <a-text
+            value="Touchez les cubes numérotés de 1 à 10 dans l'ordre.\nÉvitez les erreurs !"
+            color="#FFFFFF"
+            align="center"
+            width="1.5"
+            position="0 0 0"
+            font="mozillavr"
+          ></a-text>
+        </a-entity>
+      </a-entity>
 
-            </a-entity>
+      <!-- Partie Claudia -->
+      <a-entity id="claudia" position="1.3 0 8" rotation="0 180 0">
+        <a-sphere color="red" position="0 1 0" radius="0.5"></a-sphere>
+        <a-text
+          value="Partie Claudia"
+          position="-0.5 1 0.5"
+          color="white"
+        ></a-text>
+      </a-entity>
 
-            <!-- Partie Claudia -->
-            <a-entity id="claudia" position="1.3 0 8" rotation="0 180 0">
-                <a-sphere color="red" position="0 1 0" radius="0.5"></a-sphere>
-                <a-text value="Partie Claudia" position="-0.5 1 0.5" color="white"></a-text>
-            </a-entity>
+      <!-- Partie Emeline -->
+      <a-entity id="emeline" position="3 0 -9" rotation="0 0 0">
+        <!-- Étale du marchand mémoire -->
+        <a-entity id="stand-memoire"></a-entity>
+      </a-entity>
 
-            <!-- Partie Emeline -->
-            <a-entity id="emeline" position="3 0 -10">
-                <a-cylinder color="blue" position="0 1 0" radius="1" height="2"></a-cylinder>
-                <a-text value="Partie Emeline" position="-0.5 1 1.5" color="white"></a-text>
-            </a-entity>
-
-            <!-- Téléportation et caméra -->
-            <a-entity
-                id="cameraRig" 
-                cursor-teleport= "
+      <!-- Téléportation et caméra -->
+      <a-entity
+        id="cameraRig"
+        cursor-teleport="
                     cameraRig: #cameraRig; 
                     cameraHead: #head; 
                     collisionEntities: .clickable; 
                     cursorColor: #ffffff;
-                ">
+                "
+      >
+        <a-entity
+          id="head"
+          position="0 0.55 0"
+          camera
+          look-controls="reverseMouseDrag: true"
+        >
+          <a-entity
+            cursor="rayOrigin: mouse"
+            geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.01"
+            material="shader: flat; color: white; shader: flat; opacity: 0.75"
+            raycaster="objects: .clickable"
+          ></a-entity>
+        </a-entity>
+      </a-entity>
 
-                <a-entity
-                    id="head"
-                    position="0 0.55 0"
-                    camera
-                    look-controls="reverseMouseDrag: true"
-                >
-                    <a-entity
-                        cursor="rayOrigin: mouse"
-                        geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.01"
-                        material="shader: flat; color: white; shader: flat; opacity: 0.75"
-                        raycaster="objects: .clickable"
-                    ></a-entity>
-                </a-entity>
-            </a-entity>
+      <!-- Musique -->
+      <!-- <a-entity sound="src: #music; autoplay: true; loop: true; volume: 0.3; positional: false"></a-entity> -->
 
-            <!-- Musique -->
-            <!-- <a-entity sound="src: #music; autoplay: true; loop: true; volume: 0.3; positional: false"></a-entity> -->
+      <a-entity id="sound-touch" sound="src: #touch-cube; volume: 2"></a-entity>
+      <a-entity id="sound-win" sound="src: #win-cubes; volume: 2.7"></a-entity>
+      <a-entity id="sound-lose" sound="src: #lose-cubes; volume: 2"></a-entity>
 
-            <a-entity id="sound-touch" sound="src: #touch-cube; volume: 2"></a-entity>
-            <a-entity id="sound-win" sound="src: #win-cubes; volume: 2.7"></a-entity>
-            <a-entity id="sound-lose" sound="src: #lose-cubes; volume: 2"></a-entity>
-    
-        </a-scene>
-    </body>
+      <a-entity
+        id="sound-correct-object"
+        sound="src: #find-correct-object; volume: 2"
+      ></a-entity>
+      <a-entity
+        id="sound-wrong-object"
+        sound="src: #find-wrong-object; volume: 2"
+      ></a-entity>
+      <a-entity
+        id="sound-win-memory-game"
+        sound="src: #win-memory-game; volume: 2"
+      ></a-entity>
+    </a-scene>
+  </body>
 
-    <script src="./js/index_partie_julie.js"></script>
-
+  <script src="./js/index_partie_julie.js"></script>
+  <script src="./js/index_partie_emeline.js"></script>
 </html>
