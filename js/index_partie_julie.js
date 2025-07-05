@@ -1,4 +1,5 @@
-// Ajout du mini-jeu des 10 cubes interactifs
+// ********** Jeu des 10 cubes interactifs **********
+
 AFRAME.registerComponent('jeu-cubes', {
     init: function () {
         const container = this.el;
@@ -60,43 +61,43 @@ AFRAME.registerComponent('jeu-cubes', {
 
             // Gestion du clic sur les cubes
             cube.addEventListener('click', function () {
-            if (failed) return;
+                if (failed) return;
 
-            if (cubeNumber === current) {
-                cube.remove();
+                if (cubeNumber === current) {
+                    cube.remove();
 
-                // Quand un cube est touché
-                if (soundTouch && soundTouch.components.sound) {
-                    soundTouch.components.sound.playSound();
-                }
-
-                current++;
-                if (current > cubesData.length) {
-                    // Musique de victoire
-                    if (soundWin && soundWin.components.sound) {
-                        soundWin.components.sound.playSound();
+                    // Quand un cube est touché
+                    if (soundTouch && soundTouch.components.sound) {
+                        soundTouch.components.sound.playSound();
                     }
 
-                    alert("Bravo ! \nTu as réussi à toucher les 10 cubes dans l'ordre ! =D");
+                    current++;
+                    if (current > cubesData.length) {
+                        // Musique de victoire
+                        if (soundWin && soundWin.components.sound) {
+                            soundWin.components.sound.playSound();
+                        }
 
-                    setTimeout(resetCubes, 5000); // Recommence après 5s
-                }
-            } else {
-                    failed = true;
-                    // Musique de défaite
-                    if (soundLose && soundLose.components.sound) {
-                        soundLose.components.sound.playSound();
+                        alert("Bravo ! \nTu as réussi à toucher les 10 cubes dans l'ordre ! =D");
+
+                        setTimeout(resetCubes, 5000); // Recommence après 5s
                     }
+                } else {
+                        failed = true;
+                        // Musique de défaite
+                        if (soundLose && soundLose.components.sound) {
+                            soundLose.components.sound.playSound();
+                        }
 
-                    alert("Raté ! \nTu n'as pas cliqué dans l'ordre. Retente ta chance ! \nLes cubes réapparaissent dans 5 sec...");
-                    container.innerHTML = '';
+                        alert("Raté ! \nTu n'as pas cliqué dans l'ordre. Retente ta chance ! \nLes cubes réapparaissent dans 5 sec...");
+                        container.innerHTML = '';
 
-                    setTimeout(resetCubes, 5000); // Recommence après 5s
-                }
+                        setTimeout(resetCubes, 5000); // Recommence après 5s
+                    }
+                });
+
+                container.appendChild(cube);
             });
-
-            container.appendChild(cube);
-        });
         };
 
         resetCubes();
@@ -110,4 +111,112 @@ window.addEventListener('load', () => {
         const cubesZone = document.querySelector('#cubes-jeu');
         if (cubesZone) cubesZone.setAttribute('jeu-cubes', '');
     });
+});
+
+
+
+// ********** Jeu du grimoire **********
+
+const panneau = document.querySelector('#panneau-jeu-grimoire');
+const formesExemple = document.querySelector('#formes-exemple');
+const formesTest = document.querySelector('#formes');
+const btnDemarrer = document.querySelector('#btn-demarrer');
+const btnStart = document.querySelector('#btn-start');
+
+AFRAME.registerComponent('lancement-jeu-grimoire', {
+    init: function () {
+
+        btnDemarrer.addEventListener('click', () => {
+            panneau.setAttribute('visible', 'true');
+            formesExemple.setAttribute('visible', 'true');
+            btnStart.setAttribute('visible', 'true');
+            btnDemarrer.setAttribute('visible', 'false');
+        });
+    }
+});
+
+AFRAME.registerComponent('jeu-grimoire', {
+    init: function () {
+        // Sons interactif
+        const soundTouch = document.querySelector('#sound-touch');
+        const soundWin = document.querySelector('#sound-win');
+        const soundLose = document.querySelector('#sound-lose');
+
+        // Suite de formes à retenir
+        const bonneSequence = ['a-box', 'a-sphere', 'a-cone', 'a-cylinder'];
+        let reponseJoueur = [];
+
+        // Fonction qui compare les formes d'exemple et de test
+        const haveSameContents = (a, b) =>
+        a.length === b.length &&
+        [...new Set([...a, ...b])].every(
+            v => a.filter(e => e === v).length === b.filter(e => e === v).length
+        );
+
+        // Cache les formes d'exemple et montre les formes de test
+        btnStart.addEventListener('click', () => {
+            formesExemple.setAttribute('visible', 'false');
+            formesTest.setAttribute('visible', 'true');
+            btnStart.setAttribute('visible', 'false');
+        });
+
+        // Gestion des clics sur les formes
+        document.querySelectorAll('#formes > .clickable').forEach(forme => {
+            forme.addEventListener('click', () => {
+                const formeCliquee = forme.tagName.toLowerCase();
+                reponseJoueur.push(formeCliquee);
+
+                // Musique de clic sur une forme
+                if (soundTouch && soundTouch.components.sound) {
+                    soundTouch.components.sound.playSound();
+                }
+
+                // Si clic sur la forme piège = perdu
+                if (bonneSequence.includes(formeCliquee) == false) {
+                    // Musique de défaite
+                    if (soundLose && soundLose.components.sound) {
+                        soundLose.components.sound.playSound();
+                    }
+                    alert("Raté ! Retente ta chance !");
+
+                    // Réinitialisation
+                    reponseJoueur = [];
+                    formesExemple.setAttribute('visible', 'false');
+                    formesTest.setAttribute('visible', 'false');
+                    panneau.setAttribute('visible', 'false');
+                    btnStart.setAttribute('visible', 'false');
+                    btnDemarrer.setAttribute('visible', 'true');
+                    return;
+                }
+
+
+                // Vérif quand les 4 formes sont cliquées
+                if (reponseJoueur.length === 4) {
+                    if (haveSameContents(reponseJoueur, bonneSequence)) {
+                        // Victoire
+                        if (soundWin && soundWin.components.sound) {
+                            soundWin.components.sound.playSound();
+                        }
+                        alert("Bravo ! Tu as retrouvé toutes les formes ! =D");
+
+                    } else {
+                        // Défaite
+                        if (soundLose && soundLose.components.sound) {
+                            soundLose.components.sound.playSound();
+                        }
+                        alert("Raté ! Retente ta chance !");
+                    }
+
+                    // Réinitialisation
+                    reponseJoueur = [];
+                    formesExemple.setAttribute('visible', 'false');
+                    formesTest.setAttribute('visible', 'false');
+                    panneau.setAttribute('visible', 'false');
+                    btnStart.setAttribute('visible', 'false');
+                    btnDemarrer.setAttribute('visible', 'true');
+                    return;
+                }
+            });
+        });
+    }
 });
