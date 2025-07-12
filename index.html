@@ -22,9 +22,30 @@
           src="ressources/village/scene.gltf"
           id="village"
         ></a-asset-item>
+
         <a-asset-item
           id="stall"
           src="ressources/models/medieval_stall.glb"
+        ></a-asset-item>
+
+        <!-- Sons jeu des 10 cubes -->
+        <audio
+          id="touch-cube"
+          src="ressources/sound/jeu_cubes/touch_cube.wav"
+        ></audio>
+        <audio
+          id="win-cubes"
+          src="ressources/sound/jeu_cubes/win_cubes.wav"
+        ></audio>
+        <audio
+          id="lose-cubes"
+          src="ressources/sound/jeu_cubes/lose_cubes.wav"
+        ></audio>
+
+        <!-- Jeu du grimoire -->
+        <a-asset-item
+          src="ressources/book_stand/scene.gltf"
+          id="grimoire-model"
         ></a-asset-item>
 
         <!-- Objets jeu de mémoire -->
@@ -58,20 +79,6 @@
           src="ressources/models/wizards_staff.glb"
         ></a-asset-item>
 
-        <!-- Sons jeu des 10 cubes -->
-        <audio
-          id="touch-cube"
-          src="ressources/sound/jeu_cubes/touch_cube.wav"
-        ></audio>
-        <audio
-          id="win-cubes"
-          src="ressources/sound/jeu_cubes/win_cubes.wav"
-        ></audio>
-        <audio
-          id="lose-cubes"
-          src="ressources/sound/jeu_cubes/lose_cubes.wav"
-        ></audio>
-
         <!-- Sons jeu de mémoire -->
         <audio
           id="find-wrong-object"
@@ -90,12 +97,6 @@
           src="ressources/sound/jeu_memoire/stand_music.wav"
           preload="auto"
         ></audio>
-
-        <!-- Jeu du grimoire -->
-        <a-asset-item
-          src="ressources/book_stand/scene.gltf"
-          id="grimoire-model"
-        ></a-asset-item>
       </a-assets>
 
       <a-sky src="#sky"></a-sky>
@@ -112,7 +113,7 @@
 
       <!-- Partie Julie -->
       <a-entity id="julie" position="-5 0 3" rotation="0 90 0">
-        <!-- Jeu des 10 cubes -->
+        <!-- ********** Jeu des 10 cubes ********** -->
         <a-entity id="cubes-jeu"></a-entity>
 
         <!-- Panneau d'annonce du jeu -->
@@ -129,7 +130,7 @@
 
           <!-- Instructions du jeu -->
           <a-text
-            value="Touchez les cubes numérotés de 1 à 10 dans l'ordre.\nÉvitez les erreurs !"
+            value="Touchez les cubes numérotés de 1 à 10 dans l'ordre.\nEvitez les erreurs !"
             color="#FFFFFF"
             align="center"
             width="1.5"
@@ -137,7 +138,7 @@
             font="mozillavr"
           ></a-text>
         </a-entity>
-      </a-entity>
+
         <!-- ********** Jeu du grimoire ********** -->
 
         <!-- Bouton pour démarrer le jeu -->
@@ -269,7 +270,7 @@
           ></a-sphere>
         </a-entity>
       </a-entity>
-      
+
       <!-- Partie Claudia -->
       <a-entity id="claudia" position="1.3 0 8" rotation="0 180 0">
         <a-sphere color="red" position="0 1 0" radius="0.5"></a-sphere>
