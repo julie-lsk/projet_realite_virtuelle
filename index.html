@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SP réalité virtuelle</title>
+    <link rel="icon" href="/ressources/images/icon.ico" />
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-cursor-teleport@1.6.0/dist/aframe-cursor-teleport-component.min.js"></script>
   </head>
@@ -25,6 +26,7 @@
           id="stall"
           src="ressources/models/medieval_stall.glb"
         ></a-asset-item>
+
         <!-- Objets jeu de mémoire -->
         <a-asset-item
           id="grimoire"
@@ -88,6 +90,12 @@
           src="ressources/sound/jeu_memoire/stand_music.wav"
           preload="auto"
         ></audio>
+
+        <!-- Jeu du grimoire -->
+        <a-asset-item
+          src="ressources/book_stand/scene.gltf"
+          id="grimoire-model"
+        ></a-asset-item>
       </a-assets>
 
       <a-sky src="#sky"></a-sky>
@@ -130,7 +138,138 @@
           ></a-text>
         </a-entity>
       </a-entity>
+        <!-- ********** Jeu du grimoire ********** -->
 
+        <!-- Bouton pour démarrer le jeu -->
+        <a-plane
+          id="btn-demarrer"
+          position="-5.1 1 1.3"
+          rotation="0 30 0"
+          width="0.6"
+          height="0.2"
+          color="#F35B04"
+          class="clickable"
+          visible="true"
+          lancement-jeu-grimoire
+        >
+          <a-text
+            value="Lire le grimoire"
+            align="center"
+            color="white"
+            position="0 0 0.01"
+            width="1.5"
+          ></a-text>
+        </a-plane>
+
+        <!-- Panneau d'annonce du jeu -->
+        <a-entity
+          id="panneau-jeu-grimoire"
+          visible="false"
+          position="-4.7 0.9 1.8"
+          rotation="0 40 0"
+        >
+          <!-- Nom du jeu -->
+          <a-text
+            value="Le grimoire magique"
+            color="#F35B04"
+            align="center"
+            width="2"
+            position="0 0.2 0"
+            font="mozillavr"
+          ></a-text>
+
+          <!-- Instructions du jeu -->
+          <a-text
+            value="Memorisez bien la suite de formes au dessus du grimoire. \n Puis reproduisez la sans erreurs !"
+            color="#FFFFFF"
+            align="center"
+            width="1.5"
+            position="0 0 0"
+            font="mozillavr"
+          ></a-text>
+
+          <a-plane
+            id="btn-start"
+            visible="false"
+            position="0 -0.3 0"
+            width="0.6"
+            height="0.2"
+            color="#F35B04"
+            class="clickable"
+          >
+            <a-text
+              value="Commencer"
+              align="center"
+              color="white"
+              position="0 0 0.01"
+              width="1.5"
+            ></a-text>
+          </a-plane>
+        </a-entity>
+
+        <!-- Grimoire -->
+        <a-entity
+          id="grimoire"
+          position="-4.7 0 1.8"
+          rotation="0 130 0"
+          scale="0.3 0.3 0.3"
+          jeu-grimoire
+        >
+          <a-gltf-model src="#grimoire-model"></a-gltf-model>
+        </a-entity>
+
+        <a-entity id="formes-exemple" visible="false" position="-4.7 1.5 1.8">
+          <a-box color="red" position="-0.7 0 0.5" scale="0.3 0.3 0.3"></a-box>
+          <a-sphere
+            color="blue"
+            position="-0.3 0 0.2"
+            scale="0.2 0.2 0.2"
+          ></a-sphere>
+          <a-cone color="green" position="0.2 0 0" scale="0.2 0.4 0.2"></a-cone>
+          <a-cylinder
+            color="yellow"
+            position="0.6 0 -0.4"
+            scale="0.2 0.2 0.2"
+          ></a-cylinder>
+        </a-entity>
+
+        <a-entity id="formes" visible="false" position="-4.7 1.5 1.8">
+          <!-- Forme piège -->
+          <a-entity
+            geometry="primitive: torus; radius: 0.15; radiusTubular: 0.04; arc: 360; segmentsRadial: 36; segmentsTubular: 64"
+            material="color: purple"
+            class="form-rep clickable"
+            position="-0.65 0 0.45"
+            rotation="0 40 0"
+          ></a-entity>
+          <!-- Formes correctes -->
+          <a-cylinder
+            color="yellow"
+            class="form-rep clickable"
+            position="-0.2 0 0.2"
+            scale="0.2 0.2 0.2"
+          ></a-cylinder>
+          <a-box
+            color="red"
+            class="form-rep clickable"
+            position="0.25 0 0"
+            scale="0.3 0.3 0.3"
+          ></a-box>
+          <a-cone
+            color="green"
+            class="form-rep clickable"
+            position="0.72 0 0"
+            scale="0.2 0.35 0.2"
+          ></a-cone>
+          <a-sphere
+            color="blue"
+            class="form-rep clickable"
+            position="1.2 0 -0.2"
+            scale="0.2 0.2 0.2"
+          ></a-sphere>
+        </a-entity>
+      </a-entity>
+      
       <!-- Partie Claudia -->
       <a-entity id="claudia" position="1.3 0 8" rotation="0 180 0">
         <a-sphere color="red" position="0 1 0" radius="0.5"></a-sphere>
