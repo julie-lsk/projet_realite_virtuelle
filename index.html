@@ -21,6 +21,40 @@
           src="ressources/village/scene.gltf"
           id="village"
         ></a-asset-item>
+        <a-asset-item
+          id="stall"
+          src="ressources/models/medieval_stall.glb"
+        ></a-asset-item>
+        <!-- Objets jeu de mémoire -->
+        <a-asset-item
+          id="grimoire"
+          src="ressources/models/spellbook.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="bougie"
+          src="ressources/models/candle.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="potion"
+          src="ressources/models/potion_bottle.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="parchemin"
+          src="ressources/models/lowpoly_parchment.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="champignon"
+          src="ressources/models/mushroom.glb"
+        ></a-asset-item>
+        <a-asset-item id="cle" src="ressources/models/key.glb"></a-asset-item>
+        <a-asset-item
+          id="pomme"
+          src="ressources/models/Apple.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="baguette"
+          src="ressources/models/wizards_staff.glb"
+        ></a-asset-item>
 
         <!-- Sons jeu des 10 cubes -->
         <audio
@@ -48,6 +82,11 @@
         <audio
           id="win-memory-game"
           src="ressources/sound/jeu_memoire/win_memory_game.wav"
+        ></audio>
+        <audio
+          id="music-stand"
+          src="ressources/sound/jeu_memoire/stand_music.wav"
+          preload="auto"
         ></audio>
       </a-assets>
 
@@ -105,7 +144,15 @@
       <!-- Partie Emeline -->
       <a-entity id="emeline" position="3 0 -9" rotation="0 0 0">
         <!-- Étale du marchand mémoire -->
-        <a-entity id="stand-memoire"></a-entity>
+        <a-entity id="stand-memoire" position="0 0 0">
+          <a-gltf-model
+            src="#stall"
+            class="persistent"
+            position="-0.20 0.15 0"
+            scale="0.30 0.30 0.30"
+            rotation="0 -90 0"
+          ></a-gltf-model>
+        </a-entity>
       </a-entity>
 
       <!-- Téléportation et caméra -->
@@ -123,6 +170,7 @@
           position="0 0.55 0"
           camera
           look-controls="reverseMouseDrag: true"
+          sound="listener: true"
         >
           <a-entity
             cursor="rayOrigin: mouse"
@@ -151,6 +199,12 @@
       <a-entity
         id="sound-win-memory-game"
         sound="src: #win-memory-game; volume: 2"
+      ></a-entity>
+      <a-entity
+        id="music-stand-entity"
+        sound="src: #music-stand; autoplay: true; positional: true; loop: true; volume: 1; refDistance: 0.5; maxDistance: 0.5; rolloffFactor: 20"
+        play-stand-music-once
+        position="3 -0.2 -9"
       ></a-entity>
     </a-scene>
   </body>
