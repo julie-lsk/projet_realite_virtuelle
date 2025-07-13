@@ -1,4 +1,4 @@
-// Jeu de fléchettes : logique de démarrage, mouvement et scoring
+// Jeu de Visée: logique de démarrage, mouvement et scoring
 window.addEventListener("DOMContentLoaded", () => {
   const sceneEl = document.querySelector("a-scene");
   sceneEl.addEventListener("loaded", () => {

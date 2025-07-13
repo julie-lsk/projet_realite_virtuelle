@@ -36,12 +36,12 @@ AFRAME.registerComponent("archery-game", {
     gameContainer.setAttribute("id", "dart-game-container");
     gameContainer.setAttribute("visible", "false");
 
-    // Sons de feedback (maintenant que gameContainer existe)
+    // Sons de feedback
     const soundGain = document.createElement("a-entity");
     soundGain.setAttribute("id", "sound-gain");
     soundGain.setAttribute(
       "sound",
-      "src: url(blocks/archery-game/assets/sons/gain.mp3); volume: 1",
+      "src: url(block-claudia/archery-game/assets/sons/gain.mp3); volume: 1",
     );
     gameContainer.appendChild(soundGain);
 
@@ -49,7 +49,7 @@ AFRAME.registerComponent("archery-game", {
     soundMiss.setAttribute("id", "sound-miss");
     soundMiss.setAttribute(
       "sound",
-      "src: url(blocks/archery-game/assets/sons/lost.mp3); volume: 1",
+      "src: url(block-claudia/archery-game/assets/sons/lost.mp3); volume: 1",
     );
     gameContainer.appendChild(soundMiss);
 
@@ -57,7 +57,7 @@ AFRAME.registerComponent("archery-game", {
     soundPerdu.setAttribute("id", "sound-perdu");
     soundPerdu.setAttribute(
       "sound",
-      "src: url(blocks/archery-game/assets/sons/perdu.mp3); volume: 1",
+      "src: url(block-claudia/archery-game/assets/sons/perdu.mp3); volume: 1",
     );
     gameContainer.appendChild(soundPerdu);
 
@@ -65,7 +65,7 @@ AFRAME.registerComponent("archery-game", {
     soundVictoire.setAttribute("id", "sound-victoire");
     soundVictoire.setAttribute(
       "sound",
-      "src: url(blocks/archery-game/assets/sons/victoire.mp3); volume: 1",
+      "src: url(block-caludia/archery-game/assets/sons/victoire.mp3); volume: 1",
     );
     gameContainer.appendChild(soundVictoire);
 
@@ -134,6 +134,7 @@ AFRAME.registerComponent("archery-game", {
       <a-text value="● Vert         = 40" color="#44FF44" position="0 -0.25 0.01" width="2"></a-text>
       <a-text value="● Orange    = 30" color="#FFAA44" position="0 -0.45 0.01" width="2"></a-text>
       <a-text value="● Rouge      = 20" color="#FF4444" position="0 -0.65 0.01" width="2"></a-text>
+      <a-text value="Touche ESPACE pour tirer" color="#FFF" align="center" width="2" position="0 -0.9 0.01"></a-text>    
     `;
     gameContainer.appendChild(legend);
 
