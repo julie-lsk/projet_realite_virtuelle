@@ -1,0 +1,50 @@
+<!Doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jeu de fléchettes - Partie Claudia</title>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system@5.0.0/dist/aframe-physics-system.min.js"></script>
+    <script src="archery-component.js"></script>
+    <style>
+      body {
+        margin: 0;
+        background: black;
+      }
+    </style>
+  </head>
+  <body>
+    <a-scene physics="gravity: -9.8">
+
+      <a-assets>
+        <a-asset-item
+          id="targetModel"
+          src="block-claudia/archery-game/assets/textures/target.glb"
+        ></a-asset-item>
+        <!-- Sol, textures, etc… -->
+        <a-plane
+          rotation="-90 0 0"
+          width="20"
+          height="20"
+          color="#7BC8A4"
+          static-body
+        ></a-plane>
+      </a-assets>
+
+      <!-- Partie Claudia - Visée Médiéval -->
+      <a-entity id="claudia" position="0 0 0" archery-game></a-entity>
+
+      <!-- Caméra -->
+      <a-entity position="0 1.6 3">
+        <a-entity camera look-controls="reverseMouseDrag: true">
+          <a-entity
+            cursor="rayOrigin: mouse"
+            geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.01"
+            material="shader: flat; color: white; opacity: 0.75"
+          ></a-entity>
+        </a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
