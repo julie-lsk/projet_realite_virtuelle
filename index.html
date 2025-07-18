@@ -45,7 +45,7 @@
     <!-- Partie Claudia (archery-game + zone-panel) -->
     <script src="block-claudia/archery-game/archery-component.js"></script>
     <script src="block-claudia/archery-game/archery.js"></script>
-     <!-- Script du jeu du tonneau -->
+    <!-- Script du jeu du tonneau -->
     <script type="module" src="js/index_partie_claudia.js"></script>
   </head>
 
@@ -169,7 +169,7 @@
           id="fond"
           src="block-claudia/archery-game/assets/textures/fond.png"
         />
-        <!--Partie Claudia : Jeu du tonneau : modèle 3D -->
+        <!-- Jeu du tonneau : modèle 3D -->
         <a-asset-item
           id="barrelModel"
           src="block-claudia/barrel-game/assets/tonneau.glb"
@@ -376,8 +376,25 @@
         rotation="0 180 0"
         archery-game
       ></a-entity>
-      
-    <!-- Partie Claudia : jeu du tonneau -->
+
+      <!-- Cube de téléport vers Barrel -->
+      <a-box id="teleport-barrel"
+             position="1.423 0.658 2.169"
+             rotation="0 0 0"
+             scale="0.3 0.3 0.3"
+             color="#00FFAA"
+             class="clickable">
+      </a-box>
+      <a-text value="Le jeu du tonneau est ici, cliquez sur le cube"
+              color="#FFFFFF"
+              align="center"
+              width="2"
+              rotation="0 -130 0"
+              position="1.423 0.95 2.169"
+              side="double">
+      </a-text>
+
+      <!-- Partie Claudia : jeu du tonneau -->
       <a-entity id="barrel-zone" position="-7.339 4.731 8.729">
         <!-- Bouton Start -->
         <a-entity id="barrel-instruction" visible="true" position="0 2 0.5">
@@ -417,7 +434,7 @@
           ></a-plane>
         </a-entity>
       </a-entity>
-      
+
       <!-- Partie Emeline -->
       <a-entity id="emeline" position="3 0 -9" rotation="0 0 0">
         <!-- Étal du marchand mémoire -->
@@ -493,12 +510,7 @@
       <!-- Téléportation et caméra -->
       <a-entity
         id="cameraRig"
-        cursor-teleport="
-                    cameraRig: #cameraRig; 
-                    cameraHead: #head; 
-                    collisionEntities: .clickable; 
-                    cursorColor: #ffffff;
-                "
+        cursor-teleport="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: .clickable; cursorColor: #ffffff;"
       >
         <a-entity
           id="head"
@@ -510,44 +522,19 @@
           <a-entity
             cursor="rayOrigin: mouse"
             geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.01"
-            material="shader: flat; color: white; shader: flat; opacity: 0.75"
+            material="shader: flat; color: white; opacity: 0.75"
             raycaster="objects: .clickable"
           ></a-entity>
         </a-entity>
       </a-entity>
 
-      <!-- Musiques -->
-
-      <!-- Musique principale -->
-      <!-- <a-entity sound="src: #music; autoplay: true; loop: true; volume: 0.3; positional: false"></a-entity> -->
-
       <!-- Sons du jeu des 10 cubes -->
       <a-entity id="sound-touch" sound="src: #touch-cube; volume: 2"></a-entity>
       <a-entity id="sound-win" sound="src: #win-cubes; volume: 2.7"></a-entity>
       <a-entity id="sound-lose" sound="src: #lose-cubes; volume: 2"></a-entity>
-
-      <a-entity
-        id="sound-correct-object"
-        sound="src: #find-correct-object; volume: 2"
-      ></a-entity>
-      <a-entity
-        id="sound-wrong-object"
-        sound="src: #find-wrong-object; volume: 2"
-      ></a-entity>
-      <a-entity
-        id="sound-win-memory-game"
-        sound="src: #win-memory-game; volume: 2"
-      ></a-entity>
-      <a-entity
-        id="music-stand-entity"
-        sound="src: #music-stand; autoplay: true; positional: true; loop: true; volume: 1; refDistance: 0.5; maxDistance: 0.5; rolloffFactor: 20"
-        play-stand-music-once
-        position="3 -0.2 -9"
-      ></a-entity>
     </a-scene>
+
+    <script src="./js/index_partie_julie.js"></script>
+    <script src="./js/index_partie_emeline.js"></script>
   </body>
-  
-   <script type="module" src="js/index_partie_claudia.js"></script>
-  <script src="./js/index_partie_julie.js"></script>
-  <script src="./js/index_partie_emeline.js"></script>
 </html>
