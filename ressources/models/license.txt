@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mage cat model
+* source:	https://sketchfab.com/3d-models/mage-cat-model-c3ff96de4c714a71b019744c7c8225ee
+* author:	LimeMawy (https://sketchfab.com/sturmpfeil2015)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mage cat model" (https://sketchfab.com/3d-models/mage-cat-model-c3ff96de4c714a71b019744c7c8225ee) by LimeMawy (https://sketchfab.com/sturmpfeil2015) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
