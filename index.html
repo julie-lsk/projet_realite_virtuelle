@@ -528,32 +528,28 @@
         </a-entity>
       </a-entity>
 
+      <!-- Musique principale -->
+      <a-entity sound="src: #music-stand; autoplay: true; loop: true; volume: 0.2; positional: false"></a-entity>
+  
       <!-- Sons du jeu des 10 cubes -->
       <a-entity id="sound-touch" sound="src: #touch-cube; volume: 2"></a-entity>
-      <a-entity id="sound-win" sound="src: #win-cubes; volume: 2.7"></a-entity>
+      <a-entity id="sound-win" sound="src: #win-cubes; volume: 2"></a-entity>
       <a-entity id="sound-lose" sound="src: #lose-cubes; volume: 2"></a-entity>
-    </a-scene>
-
-      <!-- Sons jeu de mémoire et mots (Emeline) -->
+  
+      <!-- Sons jeu de mémoire du sorcier -->
       <a-entity id="sound-correct-object"
-                sound="src: #find-correct-object; volume: 2">
+                  sound="src: #find-correct-object; volume: 2">
       </a-entity>
       <a-entity id="sound-wrong-object"
-                sound="src: #find-wrong-object; volume: 2">
+                  sound="src: #find-wrong-object; volume: 2">
       </a-entity>
       <a-entity id="sound-win-memory-game"
-                sound="src: #win-memory-game; volume: 2">
+                  sound="src: #win-memory-game; volume: 2">
       </a-entity>
-      <a-entity id="music-stand-entity"
-                sound="src: #music-stand; autoplay: true; positional: true; loop: true; volume: 1; refDistance: 0.5; maxDistance: 0.5; rolloffFactor: 20"
-                play-stand-music-once
-                position="3 -0.2 -9">
-      </a-entity>
-      <a-entity id="sound-touch" sound="src: #touch-cube; volume: 2"></a-entity>
-      <a-entity id="sound-win"   sound="src: #win-cubes; volume: 2.7"></a-entity>
-      <a-entity id="sound-lose"  sound="src: #lose-cubes; volume: 2"></a-entity>
 
-    <script src="./js/index_partie_julie.js"></script>
-    <script src="./js/index_partie_emeline.js"></script>
+    </a-scene>
+
+        <script src="./js/index_partie_julie.js"></script>
+        <script src="./js/index_partie_emeline.js"></script>
   </body>
 </html>
